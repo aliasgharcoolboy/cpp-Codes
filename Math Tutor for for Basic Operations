@@ -1,0 +1,112 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+    srand(time(0));
+    int num1 = 1+rand()%100000;
+    
+    int num2 = 1+rand()%100000;
+    
+    int answer = 0;
+    
+    int guess;
+    
+    char key;
+    
+    int remainder = 0;
+    
+    int gremainder = 0;
+    
+    int operation = 1+rand()%4;
+    if(operation == 1){
+        cout<<"Hey Kido! you need to perform addition of "<<num1<<" and "<<num2<<endl;
+        cout<<"If you have guessed the answer then please type it here"<<endl;
+        answer = num1 + num2;
+        cin>>guess;
+        if(answer == guess){
+            cout<<"Congratulations! Your answer is correct"<<endl;
+        } else if(answer != guess){
+            cout<<"Opps!Your answer is incorrect"<<endl;
+            cout<<"Please 's' to view the answer"<<endl;
+            cin>>key;
+            if(key == 's'){
+                cout<<num1<<endl;
+                cout<<"+"<<num2<<endl;
+                cout<<answer<<endl;
+            }
+        }
+        
+        
+    } else if(operation == 2){
+        cout<<"Hey Kido! you need to perform substraction of "<<num1<<" and "<<num2<<endl;
+        cout<<"If you have guessed the answer then please type it here"<<endl;
+        if(num1 > num2){
+            answer = num1 - num2;
+        } else if(num2 > num1){
+            answer = num2 - num1;
+        }
+        cin>>guess;
+        if(answer == guess){
+            cout<<"Congratulations! Your answer is correct"<<endl;
+        } else if(answer != guess){
+            cout<<"Opps!Your answer is incorrect"<<endl;
+            cout<<"Press 's' to view the solution"<<endl;
+            cin>>key;
+            if(key == 's'){
+                cout<<num1<<endl;
+                cout<<"-"<<num2<<endl;
+                cout<<answer<<endl;
+            }
+        }
+
+    } else if(operation == 3){
+       cout<<"Hey Kido! you need to perform multiplication of "<<num1<<" and "<<num2<<endl;
+       cout<<"If you have guessed the answer then please type it here"<<endl;
+       answer = num1*num2;
+       cin>>guess;
+        if(answer == guess){
+            cout<<"Congratulations! Your answer is correct"<<endl;
+        } else if(answer != guess){
+            cout<<"Opps!Your answer is incorrect"<<endl;
+            cout<<"Press 's' to view the solution"<<endl;
+            cin>>key;
+            if(key == 's'){
+                cout<<num1<<endl;
+                cout<<"x"<<num2<<endl;
+                cout<<answer<<endl;
+            }
+        }
+
+    } else if(operation == 4){
+        cout<<"Hey Kido! you need to perform division of "<<num1<<" and "<<num2<<endl;
+        cout<<"If you have guessed the answer then please type it here"<<endl;
+        if(num1 > num2){
+            answer = num1 / num2;
+            remainder = num1 % num2;
+        } else if(num2 > num1){
+            answer = num2 / num1;
+            remainder = num2 % num1;
+        }
+        cout<<"Please input the quotient"<<endl;
+        cin>>guess;
+        cout<<"Please input the remainder"<<endl;
+        cin>>gremainder;
+        if(answer == guess && remainder == gremainder){
+            cout<<"Congratulations! Your answer is correct"<<endl;
+        } else if(answer != guess || remainder !=gremainder){
+            cout<<"Opps!Your answer is incorrect"<<endl;
+            cout<<"Press 's' to view the solution"<<endl;
+            cin>>key;
+            if(key == 's'){
+               
+                cout<<answer<<endl;
+                cout<<remainder<<endl;
+            }
+        }
+
+    }
+
+    return 0;
+}
