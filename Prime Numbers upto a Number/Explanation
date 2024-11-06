@@ -1,0 +1,99 @@
+Here's a detailed README description for your GitHub repository, explaining each part of the code and providing an example for debugging. This explanation will help users understand the purpose of each line, along with a sample input and output for reference.
+
+---
+
+# Prime Number Checker
+
+This C++ program identifies and prints all prime numbers up to a specified number entered by the user. It includes a helper function to determine if a number is prime and a main function that orchestrates input and output.
+
+### How It Works
+
+1. **Include Libraries**
+   ```cpp
+   #include <iostream>
+   using namespace std;
+   ```
+   - `#include <iostream>` allows us to use input and output functions, such as `cout` and `cin`.
+   - `using namespace std;` makes it easier to use standard functions without needing the `std::` prefix.
+
+2. **Prime Checking Function**
+   ```cpp
+   bool isPrime(int n){
+       for(int i=2; i<=n-1; i++){
+           if(n%i == 0){
+               return false;
+           }
+       }
+       return true;
+   }
+   ```
+   - **Purpose**: Determines if a given number `n` is prime.
+   - **Parameters**: Accepts an integer `n`.
+   - **Logic**: Checks divisibility from `2` to `n-1`. If `n` is divisible by any number in this range, it’s not prime, so the function returns `false`. Otherwise, it returns `true`.
+
+3. **Printing Prime Numbers**
+   ```cpp
+   void prime(int num){
+       for(int i=1; i<=num; i++){
+           if(isPrime(i) == true){
+               cout << i << endl;
+           }
+       }
+   }
+   ```
+   - **Purpose**: Loops through numbers from `1` to `num` and prints each prime number.
+   - **Logic**: Calls `isPrime(i)` for each number in the range. If `isPrime(i)` returns `true`, it prints the number.
+
+4. **Main Function**
+   ```cpp
+   int main() {
+       int num;
+       cout << "Input the number to which prime numbers are to be checked" << endl;
+       cin >> num;
+       prime(num);
+       return 0;
+   }
+   ```
+   - **Purpose**: Drives the program by collecting user input and calling the `prime` function.
+   - **Logic**: Prompts the user to enter a number, stores it in `num`, and passes it to `prime(num)` to display prime numbers up to `num`.
+
+### Example
+
+Consider an input where `num = 10`. The program flow is as follows:
+
+1. The user is prompted to enter the number `10`.
+2. `prime(10)` is called, which will check each number from `1` to `10`.
+3. Inside `prime()`, `isPrime(i)` is called for each `i` in the range:
+   - For `i=1`, `isPrime(1)` returns `true` by default (an enhancement might treat `1` differently).
+   - For `i=2`, `isPrime(2)` returns `true`, so `2` is printed.
+   - For `i=3`, `isPrime(3)` returns `true`, so `3` is printed.
+   - For `i=4`, `isPrime(4)` returns `false`, so it’s skipped.
+   - Continues this pattern up to `i=10`.
+4. Output will be:
+   ```
+   Input the number to which prime numbers are to be checked
+   10
+   2
+   3
+   5
+   7
+   ```
+
+### Debugging Tip
+
+For debugging, you could add `cout` statements inside `isPrime()` to check intermediate values of `i` and `n`. This would allow you to see where and why a number might be considered prime or not.
+
+```cpp
+bool isPrime(int n){
+    for(int i=2; i<=n-1; i++){
+        if(n % i == 0){
+            cout << "Found divisor " << i << " for " << n << endl;
+            return false;
+        }
+    }
+    cout << n << " is prime" << endl;
+    return true;
+}
+```
+
+With this debugging output, you’d get more insights if, for example, `n=4` fails because `4 % 2 == 0`.
