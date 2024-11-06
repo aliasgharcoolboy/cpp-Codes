@@ -1,0 +1,32 @@
+
+#include <iostream>
+using namespace std;
+
+bool boiling (char scale, int temp){
+    if(scale == 'c' && temp == 100){
+      return 1;
+    } else if(scale == 'f' && temp == 212){
+        return 1;
+    } else if(scale == 'k' && temp == 273){
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+int main () {
+    char scale;
+    cout<<"Input c for celcius,f for fahrenheit and k for kelvin"<<endl;
+    cin>>scale;
+
+    int temp;
+    cout<<"Input the temperature"<<endl;
+    cin>>temp;
+
+    int ans = boiling(scale,temp);
+    if(ans==1){
+        cout<<"Provided temperature is the boiling point of water on given scale"<<endl;
+    } else {
+        cout<<"Provided temperature is not the boiling point on given scale"<<endl;
+    }
+}
