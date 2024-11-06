@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    double m1;
+    cout<<"Input the mass of first body"<<endl;
+    cin>>m1;
+    
+    double m2;
+    cout<<"Input the mass of second body"<<endl;
+    cin>>m2;
+    
+    double distance;
+    cout<<"Input the distance between these bodies"<<endl;
+    cin>>distance;
+    
+    double G = 6.67e-11;
+    double force = G*(m1*m2 / distance*distance);
+    cout<<"The graviational force is "<<force<<endl;
+
+    return 0;
+}
