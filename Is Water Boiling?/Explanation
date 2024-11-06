@@ -1,0 +1,62 @@
+# Boiling Point Checker
+
+This C++ program checks if a given temperature corresponds to the boiling point of water on a specified temperature scale: Celsius, Fahrenheit, or Kelvin.
+
+### Key Components of the Code
+
+1. **`boiling` Function**
+   ```cpp
+   bool boiling(char scale, int temp)
+   ```
+   - **Purpose**: Determines if the given `temp` matches the boiling point of water based on the provided `scale`.
+   - **Parameters**:
+     - `char scale`: Character that specifies the temperature scale (`'c'` for Celsius, `'f'` for Fahrenheit, `'k'` for Kelvin).
+     - `int temp`: Temperature value to check.
+   - **Logic**:
+     - **Celsius ('c')**: Boiling point is `100°C`.
+     - **Fahrenheit ('f')**: Boiling point is `212°F`.
+     - **Kelvin ('k')**: Boiling point is `373 K`.
+     - If the `temp` matches the boiling point for the given `scale`, it returns `true` (or `1`).
+     - Otherwise, it returns `false` (or `0`).
+
+   Example:
+   ```cpp
+   boiling('c', 100); // Returns true since 100°C is the boiling point in Celsius.
+   ```
+
+2. **Main Function (`main`)**
+   ```cpp
+   int main()
+   ```
+   - **Purpose**: Handles user input for the temperature scale and temperature, then calls the `boiling` function to check if the temperature matches the boiling point.
+   - **Steps**:
+     - **Input Prompt**: Asks the user to input:
+       - `scale`: Specifies the temperature scale with `'c'`, `'f'`, or `'k'`.
+       - `temp`: The temperature to check.
+     - **Check and Output**:
+       - Calls `boiling(scale, temp)` and stores the result in `ans`.
+       - If `ans` is `true`, it prints a message confirming that the temperature is the boiling point on the specified scale.
+       - Otherwise, it prints that the temperature does not match the boiling point for the scale.
+
+3. **Output Example**
+
+   Suppose the input is:
+   ```
+   Input c for Celsius, f for Fahrenheit, and k for Kelvin
+   c
+   Input the temperature
+   100
+   ```
+   
+   **Output**:
+   ```
+   Provided temperature is the boiling point of water on the given scale
+   ```
+
+### Explanation of Temperature Scales
+
+- **Celsius (°C)**: Boiling point of water is 100°C.
+- **Fahrenheit (°F)**: Boiling point of water is 212°F.
+- **Kelvin (K)**: Boiling point of water is 373 K.
+
+This program helps users identify if a given temperature matches the boiling point for water in the scale they specify.
