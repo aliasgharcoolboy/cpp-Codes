@@ -1,0 +1,92 @@
+Here’s a README-style explanation for your Rat in a Maze program in C++:
+
+---
+
+# Rat in a Maze Solver
+
+This C++ program solves the classic "Rat in a Maze" problem using backtracking. The maze is represented by a grid, where `1` denotes a possible path, and `0` denotes a blocked path. The goal is to determine if there's a path from the top-left corner (0,0) to the bottom-right corner (n-1,n-1). If such a path exists, the program will print a solution matrix showing the path the rat can take.
+
+## How the Code Works
+
+### Code Breakdown
+
+1. **Include the Required Libraries**
+   ```cpp
+   #include <iostream>
+   using namespace std;
+   ```
+   - `#include <iostream>`: Allows the use of standard input and output streams (`cin` and `cout`).
+   - `using namespace std;` enables us to use standard functions without prefixing them with `std::`.
+
+2. **Safety Check Function (`issafe`)**
+   ```cpp
+   bool issafe(int** array, int x, int y, int n) {
+       if(x < n && y < n && array[x][y] == 1) {
+           return true;
+       }
+       return false;
+   }
+   ```
+   - **Purpose**: This function checks if the rat can move to a given cell `(x, y)` in the maze.
+   - **Parameters**:
+     - `array`: Pointer to the maze grid.
+     - `x`, `y`: Current coordinates in the maze.
+     - `n`: Size of the maze.
+   - **Logic**: It returns `true` if the position `(x, y)` is within bounds and the cell contains `1`, indicating it is part of a valid path.
+
+3. **Recursive Backtracking Function (`ratinmaze`)**
+   ```cpp
+   bool ratinmaze(int** array, int x, int y, int n, int** solutionarray)
+   ```
+   - **Purpose**: This recursive function attempts to find a path to the destination.
+   - **Parameters**:
+     - `array`: Pointer to the maze grid.
+     - `x`, `y`: Current coordinates in the maze.
+     - `n`: Size of the maze.
+     - `solutionarray`: Grid to store the path taken by the rat.
+   - **Logic**:
+     - Base Case: If `(x, y)` is the destination cell `(n-1, n-1)`, it marks the cell in `solutionarray` and returns `true`.
+     - Recursive Case: If `issafe()` returns `true` for the current cell `(x, y)`, the function marks the cell in `solutionarray` and recursively tries to move:
+       - Right (to `(x+1, y)`).
+       - Down (to `(x, y+1)`).
+       - If neither move leads to a solution, it backtracks by resetting `solutionarray[x][y]` to `0` and returns `false`.
+
+4. **Main Function (`main`)**
+   ```cpp
+   int main()
+   ```
+   - **Purpose**: Handles user input, initializes the maze and solution grids, and calls `ratinmaze()` to find a solution.
+   - **Explanation**:
+     - **Maze Size Input**: Prompts the user to input the size of the maze (`n`).
+     - **Maze Grid Input**: Initializes a 2D `array` dynamically based on the user-provided size, and then populates it based on user input.
+     - **Solution Grid Initialization**: Creates a 2D `solutionarray` of the same size with all cells initialized to `0`.
+     - **Solution Check and Output**:
+       - Calls `ratinmaze(array, 0, 0, n, solutionarray)` to check if there’s a solution from the start `(0, 0)`.
+       - If a path exists, it prints `solutionarray` with `1`s marking the path from start to finish.
+
+### Example Execution
+
+Consider a maze of size `3x3`:
+
+Input:
+```
+Please input the size of maze
+3
+1 0 1
+1 1 0
+0 1 1
+```
+
+Here:
+- `1` indicates a possible path.
+- `0` indicates a blocked cell.
+
+If a path exists, the program outputs a `solutionarray`:
+
+```
+1 0 0
+1 1 0
+0 1 1
+```
+
+In this solution, `1`s represent the path the rat can take to reach the destination.
