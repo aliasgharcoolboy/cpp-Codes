@@ -1,0 +1,92 @@
+# Gravitational Force Calculator
+
+This C++ program calculates the gravitational force between two masses based on their values and the distance between them. It implements Newton’s law of universal gravitation:
+
+\[
+F = \frac{G \cdot m_1 \cdot m_2}{d^2}
+\]
+
+where:
+- \( F \) is the gravitational force,
+- \( G \) is the gravitational constant \( (6.67 \times 10^{-11} \, \text{Nm}^2/\text{kg}^2) \),
+- \( m_1 \) and \( m_2 \) are the masses of the two bodies in kilograms,
+- \( d \) is the distance between the centers of the two masses.
+
+### Code Explanation
+
+1. **Include the Required Libraries**
+   ```cpp
+   #include <iostream>
+   using namespace std;
+   ```
+   - `#include <iostream>`: Provides access to input/output functions, allowing us to use `cin` and `cout`.
+   - `using namespace std;` allows us to avoid the `std::` prefix for standard library functions.
+
+2. **Main Function**
+   ```cpp
+   int main()
+   ```
+   - The `main` function is the starting point of the program.
+
+3. **User Inputs for Masses and Distance**
+   ```cpp
+   double m1;
+   cout << "Input the mass of first body" << endl;
+   cin >> m1;
+   ```
+   - **Purpose**: Prompts the user to input the mass of the first body.
+   - **Logic**: `double m1;` declares a variable `m1` to store the mass of the first body. `cin >> m1;` takes the user input for this value.
+
+   ```cpp
+   double m2;
+   cout << "Input the mass of second body" << endl;
+   cin >> m2;
+   ```
+   - **Purpose**: Prompts the user to input the mass of the second body.
+   - **Logic**: `double m2;` declares a variable `m2` to store the mass of the second body. `cin >> m2;` takes the user input for this value.
+
+   ```cpp
+   double distance;
+   cout << "Input the distance between these bodies" << endl;
+   cin >> distance;
+   ```
+   - **Purpose**: Prompts the user to input the distance between the two masses.
+   - **Logic**: `double distance;` declares a variable to store the distance. `cin >> distance;` takes the user input for this value.
+
+4. **Calculation of Gravitational Force**
+   ```cpp
+   double G = 6.67e-11;
+   double force = G * (m1 * m2 / (distance * distance));
+   ```
+   - **Purpose**: Calculates the gravitational force between the two masses.
+   - **Explanation**:
+     - `double G = 6.67e-11;` declares and initializes `G` as the gravitational constant.
+     - `double force = G * (m1 * m2 / (distance * distance));` applies the gravitational force formula using the input values of `m1`, `m2`, and `distance`.
+
+5. **Display the Result**
+   ```cpp
+   cout << "The gravitational force is " << force << endl;
+   ```
+   - **Purpose**: Outputs the calculated gravitational force to the user.
+   - **Logic**: `cout <<` displays the result stored in the `force` variable.
+
+6. **End of Program**
+   ```cpp
+   return 0;
+   ```
+   - **Purpose**: Indicates that the program has completed successfully.
+
+### Example Execution
+
+For example, if the user inputs:
+- `m1 = 5.97e24` (mass of Earth in kg),
+- `m2 = 7.34e22` (mass of Moon in kg),
+- `distance = 3.84e8` (average distance from Earth to Moon in meters),
+
+the program will output:
+
+```
+The gravitational force is 1.982e20 N
+```
+
+This output represents the gravitational force between Earth and the Moon in Newtons.
