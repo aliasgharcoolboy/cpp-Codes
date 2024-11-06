@@ -1,0 +1,109 @@
+# Binary Conversion Program
+
+This C++ program converts a user-input decimal number to its binary equivalent. It uses a vector to store each bit (0 or 1) and then displays the binary representation in the correct order.
+
+### How It Works
+
+1. **Include Libraries**
+   ```cpp
+   #include <iostream>
+   #include <vector> 
+   using namespace std;
+   ```
+   - `#include <iostream>` allows for input and output operations with `cout` and `cin`.
+   - `#include <vector>` lets us use the `vector` container to store the binary bits dynamically.
+   - `using namespace std;` enables using standard functions without the `std::` prefix.
+
+2. **Main Function**
+   ```cpp
+   int main() {
+       int num;
+       cout << "Please input a number" << endl;
+       cin >> num;
+   ```
+   - **Purpose**: This is the starting point of the program where the user enters a number, and the program then computes its binary representation.
+   - **Logic**: `num` is declared as an integer to store the user-input decimal number.
+
+3. **Declaring a Vector and Initializing Variables**
+   ```cpp
+       vector<int> bits;
+       int n = num;
+       int remainder = 0;
+   ```
+   - **`vector<int> bits;`**: Creates a dynamic array (`bits`) to store the binary bits.
+   - **`int n = num;`**: Initializes `n` with the input `num`, so `n` can be modified without altering the original input.
+   - **`int remainder = 0;`**: Initializes a variable to store each calculated remainder as `n` is divided by 2.
+
+4. **Binary Conversion Loop**
+   ```cpp
+       while(n != 0) {
+           remainder = n % 2;
+           bits.push_back(remainder);
+           n = n / 2;
+       }
+   ```
+   - **Purpose**: This loop calculates each bit of the binary number, from the least significant bit (LSB) to the most significant bit (MSB).
+   - **Logic**:
+     - `remainder = n % 2;` calculates the remainder when `n` is divided by 2, which is either `0` or `1`.
+     - `bits.push_back(remainder);` adds the `remainder` (current bit) to the `bits` vector.
+     - `n = n / 2;` updates `n` to the quotient after division by 2, repeating until `n` becomes `0`.
+   - The result is a reversed binary number (since we compute the LSB first).
+
+5. **Printing the Binary Number in Correct Order**
+   ```cpp
+       for(int i = bits.size() - 1; i >= 0; i--) {
+           cout << bits.at(i) << endl;
+       }
+   ```
+   - **Purpose**: This loop prints the binary number in the correct order, from the most significant bit to the least significant bit.
+   - **Logic**:
+     - `bits.size() - 1` gives the index of the last bit (MSB).
+     - `bits.at(i)` accesses each element in reverse order, from the MSB down to the LSB.
+   - The loop displays each bit in the correct binary order.
+
+6. **Return Statement**
+   ```cpp
+       return 0;
+   }
+   ```
+   - **Purpose**: Signals the successful end of the program.
+
+### Example
+
+Let’s run through an example where `num = 13`.
+
+1. **Input Prompt**: The user enters `13`.
+2. **Binary Conversion Process**:
+   - `13 % 2 = 1` → `bits = {1}` → `13 / 2 = 6`
+   - `6 % 2 = 0` → `bits = {1, 0}` → `6 / 2 = 3`
+   - `3 % 2 = 1` → `bits = {1, 0, 1}` → `3 / 2 = 1`
+   - `1 % 2 = 1` → `bits = {1, 0, 1, 1}` → `1 / 2 = 0`
+3. **Binary Representation**:
+   - The `bits` vector now contains `{1, 0, 1, 1}`, which is the binary of `13` in reverse order.
+4. **Output**:
+   - The program reverses the order to print: `1`, `1`, `0`, `1`.
+   
+   Output:
+   ```
+   Please input a number
+   13
+   1
+   1
+   0
+   1
+   ```
+
+### Debugging Tip
+
+To trace the conversion step-by-step, add `cout` statements inside the loop to display the intermediate values of `n` and `remainder`:
+
+```cpp
+while(n != 0) {
+    remainder = n % 2;
+    cout << "n: " << n << ", remainder: " << remainder << endl;
+    bits.push_back(remainder);
+    n = n / 2;
+}
+```
+
+This additional output would help visualize each step, particularly the process of obtaining each binary digit from the decimal input.
